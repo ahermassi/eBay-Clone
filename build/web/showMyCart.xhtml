@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        
+        <ui:include src="/includes/css.xhtml"/>
+        <title>Show Offers >> </title>
+        
+    </h:head>
+    <h:body>
+       <ui:include src="/includes/header.xhtml" />
+       <ui:include src="/includes/sidebar.xhtml" />
+      <section id="container" >
+            <!--main content start-->
+      <section id="main-content">
+          <section class="wrapper">
+        <!-- ************deb*********** -->
+        
+        &emsp;&emsp;&emsp;&emsp;
+          
+      
+        <!-- ***********fin************ -->
+        <div class="row">
+            <div class="col-lg-9 main-chart">  				
+		<div class="row" >
+
+                    <table>
+                        <c:forEach items="#{cartController.cartProducts}" var="house">
+                            
+                                    <!-- TWITTER PANEL -->
+                          <div id="#{house.id}">
+                            <div class="col-md-4 mb">
+                      		<div class="darkblue-panel pn">
+                                    <div class="darkblue-header">
+                                        <h5>Offer :  <h:outputText  value=" #{house.id}" /></h5><br></br>
+                                        <div class="pull-right">
+                                            <h5>Price  : <h:outputText  value="#{house.price}" /> $</h5>
+                                        <h5>Location : <h:outputText  value="#{house.location}" /></h5>
+                                        <h5>category : <h:outputText  value="#{house.category}" /></h5>      
+                                        </div>
+                                    </div>
+                                    <footer>
+                                        <div class="pull-left">
+                                            &nbsp;&nbsp;&nbsp;
+                                            <h:graphicImage url="#{house.photo}"
+                                                width="100"
+                                                height="90">
+                                            </h:graphicImage><br></br><br></br>
+                                            <p></p>
+                                           
+                                        </div>
+                                        <div class="pull-right">
+                                                <h:form  >
+                                                <h:commandButton class="btn btn-danger" value="Cancel" immediate="true" >
+                                                    <i class="glyphicon glyphicon-trash"></i>&nbsp;&nbsp;
+                                                    <f:ajax event="click"  execute="@form" listener="#{cartController.cancelProduct}" render="@none" />
+                                                    <f:param name="idProduct" value="#{house.id}"/>
+                                                </h:commandButton>
+                                            </h:form>
+                                        </div>
+                                    </footer>
+                      		</div><!-- /darkblue panel -->
+                            </div><!-- /col-md-4 -->
+                          </div>
+                            
+                        </c:forEach>
+                    </table>
+                            
+		</div><!-- /row -->	
+            </div><!-- /col-lg-9 END SECTION MIDDLE -->
+                  
+       
+            
+            
+      <!-- **********************************************************************************************************************************************************
+      RIGHT SIDEBAR CONTENT
+      *********************************************************************************************************************************************************** -->                  
+                  
+                  <div class="col-lg-3 ds">
+                        <!-- CALENDAR-->
+                        <div id="calendar" class="mb">
+                            <div class="panel green-panel no-margin">
+                                <div class="panel-body">
+                                    <div id="date-popover" class="popover top" style="cursor: pointer; disadding: block; margin-left: 33%; margin-top: -50px; width: 175px;">
+                                        <div class="arrow"></div>
+                                        
+                                        <h3 class="popover-title" style="disadding: none;"></h3>
+                                        <div id="date-popover-content" class="popover-content"></div>
+                                    </div>
+                                    <div id="my-calendar"></div>
+                                </div>
+                            </div>
+                        </div><!-- / calendar -->
+                  </div><!-- /col-lg-3 -->
+                  
+              </div><!--/row -->
+          </section>
+      </section>
+
+      <!--main content end-->
+      </section>
+        <ui:include src="/includes/footer.xhtml" />
+    </h:body>
+    
+    <ui:include src="/includes/js.xhtml"/>
+</html>
+
+

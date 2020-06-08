@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>test</title>
+    </h:head>
+    <h:body>
+       
+        
+     
+        
+        
+    <b:panel>
+       <f:facet name="heading">
+           <a id="atrigger1" href="#amodal1" data-toggle="modal">Bid!</a>
+       </f:facet>
+    </b:panel>
+    
+        
+        
+    <b:modal id="amodal1" title="Warning!" styleClass="modalPseudoClass">
+        <p id="amodal1body"> Are you sure ?</p>
+        <f:facet name="footer">
+            <b:button value="Close" dismiss="modal" onclick="return false;"/>
+            </f:facet>
+    </b:modal>
+
+        
+        
+        
+    </h:body>
+</html>
+

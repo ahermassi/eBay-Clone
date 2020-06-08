@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      <!-- **********************************************************************************************************************************************************
+      MAIN SIDEBAR MENU
+      *********************************************************************************************************************************************************** -->
+      <!--sidebar start-->
+      <aside>
+          <div id="sidebar"  class="nav-collapse ">
+              <!-- sidebar menu start-->
+              <ul class="sidebar-menu" id="nav-accordion">
+              
+                  <p class="centered"><a href="profile.html"><img src="template/img/houses/icon-user.png" class="img-circle" width="60"></img></a></p>
+              	  <h5 class="centered"> Hello <h:outputText id ="outtxt" value="#{login.login}" /> </h5>
+              	  
+                  <li class="mt">
+                      <a class="active" href="home.xhtml">
+                          <i class="glyphicon glyphicon-home"></i>
+                          <span>Home </span>
+                      </a>
+                  </li>
+                  <li class="sub-menu">
+                      <a href="javascript:;" >
+                          <i class="glyphicon glyphicon-shopping-cart"></i>
+                          <span>Show My Cart</span>
+                      </a>
+                      <ul class="sub">
+                          <li><a  href="showMyCart.xhtml"> <i class="glyphicon glyphicon-ok"></i>Show Added Articles </a></li>
+                      </ul>
+                  </li>
+
+                  <li class="sub-menu">
+                      <a href="javascript:;" >
+                          <i class="glyphicon glyphicon-plus"></i>
+                          <span  >Add New Sale</span>
+                      </a>
+                      <ul class="sub">
+                          <li><a  href="AddNewSale.xhtml">Add</a></li>
+                          <li><a  href="ShowMyListings.xhtml">Show my Listings</a></li>
+                      </ul>
+                  </li>
+                  
+                  
+                  
+
+              </ul>
+              <!-- sidebar menu end-->
+          </div>
+      </aside>
+      <!--sidebar end-->
+</html>
+
+

@@ -1,0 +1,167 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        
+        <ui:include src="/includes/css.xhtml"/>
+        <title>Show Offers >> </title>
+        <f:metadata>            
+            <f:viewParam  name="addToCart" value="#{cartController.addToCart}"/>
+            <f:viewAction action="#{showOffersController.checkSearch()}"  onPostback="true"   />
+        </f:metadata>
+    </h:head>
+    <h:body>
+       <ui:include src="/includes/header.xhtml" />
+       <ui:include src="/includes/sidebar.xhtml" />
+      <section id="container" >
+            <!--main content start-->
+      <section id="main-content">
+          <section class="wrapper">
+        <!-- ************deb*********** -->
+        
+        &emsp;&emsp;&emsp;&emsp;
+        <h3>Filter Offers by Purchase Option : &emsp;</h3>
+        <label class="checkbox-inline">
+            <h:form style="vertical-align: top;">
+         <h:selectOneRadio value = "#{showOffersController.selectedOption}" styleClass="selectItemSpace">
+            <f:selectItem itemValue = "1" itemLabel = "All &emsp;&emsp;"   />
+            <f:selectItem itemValue = "2" itemLabel = "Immediate purchase &emsp;&emsp;" />
+            <f:selectItem itemValue = "3" itemLabel = "Bid" />
+         </h:selectOneRadio>	   		
+                <h:commandButton value = "Search >> " action = "showOffers" style="margin-left: 10px;"  />
+                </h:form>             
+        </label>
+        
+      
+        <!-- ***********fin************ -->
+        <div class="row">
+            <div class="col-lg-9 main-chart">  				
+		<div class="row" >
+
+                    <table>
+                        <c:forEach items="#{showOffersController.items}" var="home">
+                                    <!-- TWITTER PANEL -->
+                            <div class="col-md-4 mb">
+                      		<div class="darkblue-panel pn">
+                                    <div class="darkblue-header">
+                                        <h5 >User ID -> <h:outputText  value=" #{home.userPostId}" /> ,&nbsp;
+                                            Buy : <h:outputText  value="#{home.typeAchat}" />   
+                                        </h5>
+                                         
+                                        <c:if test="#{home.typeAchat == 'enchere' }">    
+                                            <c:choose>
+                                            <c:when  test="#{home.finalDate.after(showOffersController.currentDate)}">
+                                            <h5 ><marquee behavior="scroll" direction="left"><font color="yellow"><h:outputText   value="#{home.leftDays}" /> left</font> </marquee></h5>
+                                            </c:when>
+                                             <c:when  test="#{home.finalDate.before(showOffersController.currentDate)}">
+                                            <h5 ><marquee behavior="scroll" direction="left"><font color="pink">closed</font> </marquee></h5>
+                                            </c:when>
+                                            </c:choose>
+                                        </c:if>
+                                        
+                                        <div class="pull-right">
+                                                <h5>Price  : <h:outputText  value="#{home.price}" /> $</h5>
+                                                <c:if test="#{home.typeAchat == 'enchere' }">
+                                                    <h5 style="color: yellow;">Bid Price  : <h:outputText   value="#{home.topPrice}" /> $</h5>
+                                                </c:if>
+                                                <h5>Location : <h:outputText  value="#{home.location}" /></h5>  
+                                                
+                                        </div>
+                                    </div>
+                                    <footer>
+                                        <div class="pull-left">
+                                            &nbsp;&nbsp;&nbsp;
+                                            <h:graphicImage url="#{home.photo}"
+                                                width="100"
+                                                height="90">
+                                            </h:graphicImage><br></br><br></br>
+                                             <p></p>
+                                        </div>
+                                        <div class="pull-right">
+                                            <c:if test="#{home.typeAchat == 'immediat' }"> 
+
+                                                    <h:form>
+                                                     &nbsp;
+                                                     <h:commandButton styleClass="btn btn-default" disabled="#{home.finalDate.before(showOffersController.currentDate)}"  class="btn btn-info" value="Add to Cart" immediate="true" >
+                                                            <i class="glyphicon glyphicon-shopping-cart"></i>
+                                                            <f:ajax event="click"  execute="@form" listener="#{cartController.addProduct}" render="@none" />
+                                                            <f:param name="idProduct" value="#{home.id}"/>
+                                                     </h:commandButton>
+
+                                                    </h:form>
+
+                                            </c:if>
+                                            <c:if test="#{home.typeAchat == 'enchere' and home.finalDate.after(showOffersController.currentDate) }"> 
+                                                   
+                                            <div class="form-group">
+
+                                                 <h:form>
+                                                   &nbsp; 
+                                                   <input type="text" class="form-control"  placeholder="enter bid price" id="txtAnotherProperty" name="txtAnotherProperty" a:placeholder="enter bid price" />
+                                                   <h:commandButton class="btn btn-theme btn-block" value="new bid price" id ="submit" action="showOffers.xhtml">
+                                                       <f:ajax event="click"   listener="#{house.modifyTopBidPrice()}" render=":showOffers"  />
+                                                            <f:param name="id" value="#{home.id}"/>
+                                                            <f:param name="bidPrice" value="#{home.topPrice}"/>
+                                                            <f:param name="price" value="#{home.price}"/>
+                                                   </h:commandButton>
+                                                  
+                                                </h:form>
+                                               </div>
+          			<!-- /form-panel -->
+                                                   
+                                            </c:if>
+                                        </div>
+                                    </footer>
+                      		</div><!-- /darkblue panel -->
+                            </div><!-- /col-md-4 -->
+                            
+                        </c:forEach>
+                    </table>
+                            
+		</div><!-- /row -->	
+            </div><!-- /col-lg-9 END SECTION MIDDLE -->
+                  
+       
+            
+            
+      <!-- **********************************************************************************************************************************************************
+      RIGHT SIDEBAR CONTENT
+      *********************************************************************************************************************************************************** -->                  
+                  
+                  <div class="col-lg-3 ds">
+                        <!-- CALENDAR-->
+                        <div id="calendar" class="mb">
+                            <div class="panel green-panel no-margin">
+                                <div class="panel-body">
+                                    <div id="date-popover" class="popover top" style="cursor: pointer; disadding: block; margin-left: 33%; margin-top: -50px; width: 175px;">
+                                        <div class="arrow"></div>
+                                        
+                                        <h3 class="popover-title" style="disadding: none;"></h3>
+                                        <div id="date-popover-content" class="popover-content"></div>
+                                    </div>
+                                    <div id="my-calendar"></div>
+                                </div>
+                            </div>
+                        </div><!-- / calendar -->
+                  </div><!-- /col-lg-3 -->
+                  
+              </div><!--/row -->
+          </section>
+      </section>
+
+      <!--main content end-->
+      </section>
+        <ui:include src="/includes/footer.xhtml" />
+    </h:body>
+    
+    <ui:include src="/includes/js.xhtml"/>
+</html>
+
+

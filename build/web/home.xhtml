@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"          
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        
+        <ui:include src="/includes/css.xhtml"/>
+        <title>Home Page</title>
+        
+    </h:head>
+    <h:body>
+       <ui:include src="/includes/header.xhtml" />
+       <ui:include src="/includes/sidebar.xhtml" />
+      <section id="container" >
+       <!--<o:resourceInclude path="/includes/header.jsp" />-->
+
+            <!--main content start-->
+      <section id="main-content">
+          <section class="wrapper">
+
+             <div class="row">
+                    <div class="col-lg-9 main-chart">
+                      
+                        <div class="row mt">
+                                <!-- Category :  Urban House  link -->
+                                    <div class="col-md-4 mb">
+                                        <div class="white-panel pn">
+                                                <div class="white-header">
+                                                        <h5>Urban House</h5>
+                                                </div>
+                                            <p><img src="template/img/houses/category/urban.jpg" class="img-circle" width="230"></img></p>
+                                            <h:link value="Show Offers >>" outcome="showOffers">
+                                                <f:param name="category" value="urban"/>
+                                            </h:link>
+                                        </div>
+                                    </div><!-- /col-md-4 -->
+                                    
+                                <!-- Category :  waterside House  link -->
+                                    <div class="col-md-4 mb">
+                                        <div class="white-panel pn">
+                                                <div class="white-header">
+                                                        <h5>waterside House</h5>
+                                                </div>
+                                            <p><img src="template/img/houses/category/waterside.jpg" class="img-circle" width="230"></img></p>
+                                            <h:link value="Show Offers >>" outcome="showOffers">
+                                                <f:param name="category" value="waterside"/>
+                                            </h:link>
+                                        </div>
+                                    </div><!-- /col-md-4 -->
+                                    
+                                 <!-- Category :  Urban House  link -->
+                                    <div class="col-md-4 mb">
+                                        <div class="white-panel pn">
+                                                <div class="white-header">
+                                                        <h5>Rural House</h5>
+                                                </div>
+                                            <p><img src="template/img/houses/category/rural.jpg" class="img-circle" width="230"></img></p>
+                                            <h:link value="Show Offers >>" outcome="showOffers">
+                                                <f:param name="category" value="rural"/>
+                                            </h:link>
+                                        </div>
+                                    </div><!-- /col-md-4 -->
+                        </div><!-- /row -->
+					
+                    </div><!-- /col-lg-9 END SECTION MIDDLE -->
+                  
+                  
+      <!-- **********************************************************************************************************************************************************
+      RIGHT SIDEBAR CONTENT
+      *********************************************************************************************************************************************************** -->                  
+                  
+                  <div class="col-lg-3 ds">
+                        <!-- CALENDAR-->
+                        <div id="calendar" class="mb">
+                            <div class="panel green-panel no-margin">
+                                <div class="panel-body">
+                                    <div id="date-popover" class="popover top" style="cursor: pointer; disadding: block; margin-left: 33%; margin-top: -50px; width: 175px;">
+                                        <div class="arrow"></div>
+                                        <h3 class="popover-title" style="disadding: none;"></h3>
+                                        <div id="date-popover-content" class="popover-content"></div>
+                                    </div>
+                                    <div id="my-calendar"></div>
+                                </div>
+                            </div>
+                        </div><!-- / calendar -->
+                  </div><!-- /col-lg-3 -->
+              </div><!--/row -->
+          </section>
+      </section>
+
+      <!--main content end-->
+      </section>
+        <ui:include src="/includes/footer.xhtml" />
+    </h:body>
+    
+    <ui:include src="/includes/js.xhtml"/>
+</html>
+
+

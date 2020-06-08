@@ -1,0 +1,122 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <meta charset="utf-8"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+        <meta name="description" content=""></meta>
+        <meta name="author" content="Dashboard"></meta>
+        <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina"></meta>
+        <ui:include src="/includes/css.xhtml"/>
+        <title>Login Page</title>
+        
+       
+    </h:head>
+    <h:body>
+ 
+        
+      <!-- **********************************************************************************************************************************************************
+      MAIN CONTENT
+      *********************************************************************************************************************************************************** -->
+          
+    <c:if test="#{login.registerForm eq 0 }">
+      
+            <div id="login-page1">
+	  	<div class="container">
+                    <h:form class="form-login">
+                       
+		        <h2 class="form-login-heading">sign in now</h2>
+		        <div class="login-wrap">
+                            <p:inputText class="form-control" placeholder="User ID" value="#{login.login}"/> 
+                            <br> </br>
+                            <h:inputSecret  class="form-control"  redisplay="true"  required="true"
+                            requiredMessage="Password field must not be empty" value="#{login.password}"/>
+		            <br> </br>
+                            <h:commandButton class="btn btn-theme btn-block" value="Login" id ="submit" action="#{login.loginControl}"/>
+		            <hr></hr>
+                            
+                             Don't have an account yet?<br/>
+                             <p:commandLink onclick=" $('#login-page1').remove();
+                                               PF('testPanel').show();" 
+                                               value="Sign Up" type="button"/>
+		        </div>
+                   
+                    </h:form>
+	  	</div>
+            </div>
+    </c:if>
+      
+      
+      
+	  <div id="login-page2">
+	  	<div class="container">
+                    <h:form class="form-login">
+                        <p:panel id="button_panel" visible="false" widgetVar="testPanel" closable="true" toggleable="true" >
+                                    <!-- begin register  -->
+		        <h2 class="form-login-heading">sign up now</h2>
+		        <div class="login-wrap">
+                                <h:inputText class="form-control" a:placeholder="login"  value="#{login.login}"/> 
+                                <br> </br>
+                                <h:inputSecret  class="form-control" a:placeholder="password"  redisplay="true"  required="true"
+                                requiredMessage="Password field must not be empty" value="#{login.password}"/>
+                                <br> </br>
+
+                                <p:inputText id="email" a:placeholder="email" required="true" label="email" size="40" value="#{login.email}"
+                                    requiredMessage="Please enter your email address."
+                                    validatorMessage="Invalid email format"
+                                    class="form-control">
+                                <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                                </p:inputText>
+
+                                <p:watermark for="email" value="Email Address *" />
+                                <p:message for="email" />
+                                <br></br>
+                                <h:commandButton type="submit"                  
+                                    class="btn btn-theme btn-block" value="Sign Up" id ="submit"   action="#{login.signUp}">
+                                    <f:setPropertyActionListener target="#{login.registerForm}"    value="1" />
+                                </h:commandButton>
+                                
+                                <h:form>
+                                    <h:link   value="Sign In" type="button" outcome="login"  />
+                                <hr></hr>
+                                </h:form>
+                        </div>
+                        </p:panel>
+                    </h:form>
+	  	</div>
+	  </div>
+      
+       
+      
+      
+      
+
+    <!-- js placed at the end of the document so the pages load faster -->
+    <script src="template/js/jquery.js"></script>
+    <script src="template/js/bootstrap.min.js"></script>
+
+    <!--BACKSTRETCH-->
+    <!-- You can use an image of whatever size. This script will stretch to fit in any screen size.-->
+    <script type="text/javascript" src="template/js/jquery.backstretch.min.js"></script>
+    <script>
+        $.backstretch("template/img/login-bg.jpg", {speed: 500});
+        function testFunc() {
+        $('#login-page1').remove();
+        return ture;
+ }
+    </script>
+
+    
+    
+    
+    </h:body>
+</html>
+
+

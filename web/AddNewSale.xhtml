@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        
+        <ui:include src="/includes/css.xhtml"/>
+        <title>Add New Sale >> </title>
+       
+    </h:head>
+    <h:body>
+       <ui:include src="/includes/header.xhtml" />
+       <ui:include src="/includes/sidebar.xhtml" />
+      <section id="container" >
+      <!-- **********************************************************************************************************************************************************
+      MAIN CONTENT
+      *********************************************************************************************************************************************************** -->
+      <!--main content start-->
+      <section id="main-content">
+          <section class="wrapper">
+          	<h3><i class="fa fa-angle-right"></i> Add New Sale</h3>
+          	
+          	<!-- BASIC FORM ELELEMNTS -->
+          	<div class="row mt">
+          		<div class="col-lg-12">
+                  <div class="form-panel">
+                  	  <h4 class="mb"><i class="fa fa-angle-right"></i> Fill the Form</h4>
+                      <h:form class="form-horizontal style-form" >
+                          
+                          <div class="form-group">
+                              <label class="col-sm-2 col-sm-2 control-label">Description</label>
+                              <div class="col-sm-10">
+                                  <p:inputText class="form-control" value="#{addNewSale.description}"/>
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <label class="col-sm-2 col-sm-2 control-label">Location</label>
+                              <div class="col-sm-10">
+                                  <p:inputText class="form-control" value="#{addNewSale.location}" />
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <label class="col-sm-2 col-sm-2 control-label">Price</label>
+                              <div class="col-sm-10">
+                                  <p:inputText class="form-control" value="#{addNewSale.price}"/>
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <label class="col-sm-2 col-sm-2 control-label">Address</label>
+                              <div class="col-sm-10">
+                                  <p:inputText class="form-control"  value="#{addNewSale.address}"/>
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <label class="col-sm-2 col-sm-2 control-label">Photo (path)</label>
+                              <div class="col-sm-10">
+                                  <p:inputText class="form-control" value="#{addNewSale.photo}"/>
+                              </div>
+                          </div>
+                                                    
+                          <label class="col-sm-2 col-sm-2 control-label">Category</label>
+                          <h:selectOneMenu value="#{addNewSale.category}" class="form-control"> 
+                            <f:selectItem itemValue = "2" itemLabel = "WaterSide" /> 
+                            <f:selectItem itemValue = "3" itemLabel = "Urban" /> 
+                            <f:selectItem itemValue = "1" itemLabel = "Rural" /> 
+                         </h:selectOneMenu> 
+                         
+                          <label class="col-sm-2 col-sm-2 control-label">Purchase Type</label>
+                         <h:selectOneMenu value = "#{addNewSale.purchaseType}" class="form-control"> 
+                            <f:selectItem itemValue = "immediat" itemLabel = "Immediate" /> 
+                            <f:selectItem itemValue = "enchere" itemLabel = "Bid" /> 
+                         
+                         </h:selectOneMenu> 
+                          <br></br>
+                            <div class="form-group">
+                                <label class="col-sm-2 col-sm-2 control-label">Final Date (if bid purchase)</label>
+                                <div class="col-sm-10">
+                                       <p:calendar showOn="button" value="#{addNewSale.finalDate}" />
+                                </div>
+                            </div>
+                              
+                          <br></br>
+                          <h:commandButton class="btn btn-theme btn-block" value="Post" id ="submit"
+                                           action="#{addNewSale.addNew}"/>
+                          <br></br>
+                         
+                      </h:form>
+                  </div>
+          		</div><!-- col-lg-12-->      	
+          	</div><!-- /row -->
+          	
+
+
+          	
+		</section> <!-- wrapper -->
+      </section><!-- /MAIN CONTENT -->
+
+      <!--main content end-->
+
+      </section>
+        <ui:include src="/includes/footer.xhtml" />
+    </h:body>
+    
+    <ui:include src="/includes/js.xhtml"/>
+</html>
+
+
